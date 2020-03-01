@@ -1,0 +1,36 @@
+<section class="bs-books-admin">
+	<div class="bs-container">
+		<div>
+			<a class="nav-link" routerLink="/admin/create">
+				<fa-icon [icon]="faPlus"></fa-icon>
+			</a>
+		</div>
+		<table class="table">
+			<thead class="thead-dark">
+				<th scope="col">ID</th>
+				<th scope="col">Title</th>
+				<th scope="col">Author</th>
+				<th scope="col">Price</th>
+				<th scope="col">Published Date</th>
+				<th scope="col"></th>
+			</thead>
+			<tbody>
+				<tr *ngFor="let book of books; let i = index">
+					<th scope="row">{{ book.id }}</th>
+					<td>{{ book.title }}</td>
+					<td>{{ book.author }}</td>
+					<td>{{ book.price | currency: '$' }}</td>
+					<td>{{ book.publishedDate | date: 'dd/MM/yyyy' }}</td>
+					<td class="bs-books-admin__buttons">
+						<a class="nav-link" routerLink="/admin/edit/{{ book.id }}">
+							<fa-icon [icon]="faEdit"></fa-icon>
+						</a>
+						<a class="nav-link" (click)="deleteBook(book.id, i)">
+							<fa-icon [icon]="faTrash"></fa-icon>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</section>

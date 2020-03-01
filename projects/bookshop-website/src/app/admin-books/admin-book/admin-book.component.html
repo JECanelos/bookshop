@@ -1,0 +1,83 @@
+<section class="bs-admin-create">
+	<div class="bs-container">
+		<div class="card">
+			<div class="card-header">
+				<h3 *ngIf="insert">Insert New Book</h3>
+				<h3 *ngIf="!insert">Edit Book</h3>
+			</div>
+			<div class="card-body">
+				<form #formCtrl="ngForm">
+					<div class="form-group">
+						<label for="create-book-title">Title</label>
+						<input
+							id="create-book-title"
+							type="text"
+							name="title"
+							#titleField="ngModel"
+							class="form-control"
+							required
+							[ngClass]="{ 'is-invalid': titleField.touched && titleField.invalid }"
+							[(ngModel)]="book.title"
+						/>
+					</div>
+					<div class="form-group">
+						<label for="create-book-author">Author</label>
+						<input
+							id="create-book-author"
+							type="text"
+							name="author"
+							#authorField="ngModel"
+							class="form-control"
+							required
+							[ngClass]="{ 'is-invalid': authorField.touched && authorField.invalid }"
+							[(ngModel)]="book.author"
+						/>
+					</div>
+					<div class="form-group">
+						<label for="create-book-price">Price</label>
+						<input
+							id="create-book-price"
+							type="number"
+							name="price"
+							#priceField="ngModel"
+							class="form-control"
+							required
+							[ngClass]="{ 'is-invalid': priceField.touched && priceField.invalid }"
+							[(ngModel)]="book.price"
+						/>
+					</div>
+					<div class="form-group">
+						<label for="create-book-reviews">Reviews</label>
+						<input
+							id="create-book-reviews"
+							type="number"
+							name="reviews"
+							#reviewsField="ngModel"
+							class="form-control"
+							required
+							[ngClass]="{ 'is-invalid': reviewsField.touched && reviewsField.invalid }"
+							[(ngModel)]="book.reviews"
+						/>
+					</div>
+					<div class="form-group">
+						<label for="create-book-rating">Rating</label>
+						<input
+							id="create-book-rating"
+							type="number"
+							name="rating"
+							#ratingField="ngModel"
+							class="form-control"
+							required
+							[ngClass]="{ 'is-invalid': ratingField.touched && ratingField.invalid }"
+							[(ngModel)]="book.rating"
+						/>
+					</div>
+
+					<button *ngIf="insert" type="submit" class="btn btn-primary" (click)="createBook()">Insert</button>
+					<button *ngIf="!insert" type="submit" class="btn btn-primary" (click)="editBook()">Edit</button>
+					<!-- <code><pre>{{ emailField.errors | json }}</pre></code> -->
+				</form>
+			</div>
+		</div>
+	</div>
+</section>

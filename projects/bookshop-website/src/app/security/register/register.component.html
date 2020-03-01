@@ -1,0 +1,92 @@
+<section class="bs-register">
+	<div class="bs-container">
+		<div class="card">
+			<div class="card-header">
+				<h3>Register</h3>
+			</div>
+			<div class="card-body">
+				<form #formCtrl="ngForm" (ngSubmit)="register(formCtrl)">
+					<div class="form-group">
+						<label for="register-email">Email</label>
+						<input
+							id="register-email"
+							type="email"
+							name="email"
+							#emailField="ngModel"
+							class="form-control"
+							required
+							email
+							[ngClass]="{ 'is-invalid': emailField.touched && emailField.invalid }"
+							[(ngModel)]="user.email"
+						/>
+						<div class="invalid-feedback" *ngIf="emailField.touched && emailField.errors">
+							<div *ngIf="emailField.errors.required">Email is required</div>
+							<div *ngIf="emailField.errors.email">Email is invalid</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="register-password">Password</label>
+						<input
+							id="register-password"
+							type="password"
+							name="password"
+							#passwordField="ngModel"
+							class="form-control"
+							required
+							minLength="8"
+							[(ngModel)]="user.password"
+							[ngClass]="{ 'is-invalid': passwordField.touched && passwordField.invalid }"
+						/>
+						<div class="invalid-feedback" *ngIf="passwordField.touched && passwordField.errors">
+							<div *ngIf="passwordField.errors.required">Password is required</div>
+							<div *ngIf="passwordField.errors.minLength">
+								<p>
+									Password: {{ passwordField.errors.minLength.requiredLength }} chars min, actual
+									{{ passwordField.errors.minLength.actualLength }}
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="register-firstname">First Name</label>
+						<input
+							id="register-firstname"
+							type="text"
+							name="firstname"
+							#firstnameField="ngModel"
+							class="form-control"
+							required
+							[(ngModel)]="user.firstName"
+							[ngClass]="{ 'is-invalid': firstnameField.touched && firstnameField.invalid }"
+						/>
+						<div class="invalid-feedback" *ngIf="firstnameField.touched && firstnameField.errors">
+							<div *ngIf="firstnameField.errors.required">First name is required</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="register-lastname">Last Name</label>
+						<input
+							id="register-lastname"
+							type="text"
+							name="lastname"
+							#lastnameField="ngModel"
+							class="form-control"
+							required
+							[(ngModel)]="user.lastName"
+							[ngClass]="{ 'is-invalid': lastnameField.touched && lastnameField.invalid }"
+						/>
+						<div class="invalid-feedback" *ngIf="lastnameField.touched && lastnameField.errors">
+							<div *ngIf="lastnameField.errors.required">Last name is required</div>
+						</div>
+					</div>
+
+					<button type="submit" class="btn btn-primary">Register</button>
+					<!-- <code><pre>{{ emailField.errors | json }}</pre></code> -->
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
